@@ -1,31 +1,38 @@
-# Menoua — Vercel static site
+# Hosting these pages
 
-This folder is intentionally a plain static HTML site:
-- `index.html` is the root page
-- `privacy.html` is the privacy policy
-- `terms.html` is the terms of service
-- no build command
-- no framework
-- no dependencies
-- no `vercel.json` is required
+Two static files. No build step, no framework, no dependencies.
 
-## Vercel settings
+## Fastest route (5 minutes, free)
 
-When importing this folder/repository into Vercel:
+**Netlify Drop** — drag this `web/` folder onto https://app.netlify.com/drop.
+You get a URL immediately. Rename the site to `menoua` and you have:
 
-- Root Directory: `.`
-- Framework Preset: leave Vercel's static/default handling; do not force Next.js
-- Build Command: leave empty/default
-- Output Directory: leave empty/default
+```
+https://menoua.netlify.app/privacy.html
+https://menoua.netlify.app/terms.html
+```
 
-Most importantly, deploy the contents of this folder as the project root. Do not deploy the parent directory containing this folder as a nested `web/` directory.
+Those URLs are valid for the Play Console listing today. Point `menoua.app` at
+the same site later; the store record can be updated.
 
-After deployment, these paths should work:
-- `/`
-- `/privacy.html`
-- `/terms.html`
+## Alternatives
 
-If using the Vercel CLI from this folder:
-`vercel --prod`
+- **GitHub Pages** — push `web/` to a repo, Settings → Pages → deploy from branch
+- **Vercel** — `npx vercel --prod` inside `web/`
+- **Cloudflare Pages** — connect the repo, no build command
 
-Vercel's current NOT_FOUND troubleshooting says to verify the deployment output and make sure an index is present, and to check Root Directory / Output Directory when the deployment output is wrong.
+## Then
+
+1. Play Console → App content → **Privacy policy** → paste the privacy URL
+2. Play Console → **Data safety** form. Answer it honestly:
+   - Audio recordings: **collected? No.** They stay on the device.
+   - The waveform summary is not audio and cannot be reversed into audio.
+   - Personal info: email, **optional**, for account sign-in
+   - Health info: yes, optional, for exercise safety
+   - Data is encrypted in transit and users can request deletion in-app
+3. App Store Connect → App Privacy → the same answers
+
+## Before launch
+
+- Set up `privacy@menoua.app` and `support@menoua.app`. Both pages reference
+  them and a bounced privacy email is a compliance problem, not a typo.

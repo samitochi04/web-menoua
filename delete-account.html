@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete Your Account — Menoua</title>
+<meta name="description" content="Request deletion of your Menoua account and data.">
+<style>
+  :root{--ink:#0B1F27;--body:#3C5560;--muted:#7B939D;--line:rgba(20,54,66,.10);
+        --bg:#F5F6F7;--card:#fff;--teal:#0F8B8D;--petrol:#143642;--red:#A8201A;--redbg:#FBEFEE}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--body);
+       font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .wrap{max-width:640px;margin:0 auto;padding:0 22px 96px}
+  header{background:var(--petrol);color:#fff;padding:56px 22px 44px;margin-bottom:36px}
+  header .inner{max-width:640px;margin:0 auto}
+  .mark{display:flex;align-items:center;gap:10px;margin-bottom:26px}
+  .mark span{font-weight:700;letter-spacing:.14em;font-size:12px;opacity:.75}
+  h1{margin:0 0 8px;font-size:32px;line-height:1.15;color:#fff}
+  .sub{margin:0;opacity:.72;font-size:15px}
+  h2{color:var(--ink);font-size:20px;margin:0 0 6px}
+  h3{color:var(--ink);font-size:16px;margin:0 0 4px}
+  p{font-size:15.5px;margin:0 0 14px}
+  ul{padding-left:20px;margin:0 0 14px} li{margin:6px 0;font-size:15px}
+  .card{background:var(--card);border-radius:16px;padding:24px;margin:18px 0;
+        box-shadow:0 1px 2px rgba(11,31,39,.05),0 8px 24px rgba(11,31,39,.05)}
+  .step{display:flex;gap:12px;margin:14px 0}
+  .num{flex:0 0 26px;height:26px;border-radius:13px;background:#EDF7F7;color:var(--teal);
+       font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+  label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin:14px 0 6px}
+  input{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);
+        font-size:15px;font-family:inherit;background:#fff;color:var(--ink)}
+  input:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+  button{width:100%;padding:13px 14px;border-radius:10px;border:0;background:var(--petrol);
+         color:#fff;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:14px}
+  button:disabled{opacity:.5;cursor:default}
+  button.danger{background:var(--red)}
+  button.ghost{background:transparent;color:var(--teal);font-weight:600}
+  .msg{border-radius:10px;padding:12px 14px;font-size:14px;margin-top:14px;display:none}
+  .msg.show{display:block}
+  .msg.ok{background:#EDF7F7;color:#0A6A6C}
+  .msg.err{background:var(--redbg);color:var(--red)}
+  .divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;
+           text-transform:uppercase;letter-spacing:.08em;margin:26px 0}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--ink);font-weight:600;width:38%}
+  a{color:var(--teal)}
+  .hidden{display:none}
+  footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:13.5px}
+</style>
+</head>
+<body>
+<header><div class="inner">
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true">
+      <g fill="#fff"><circle cx="50" cy="25" r="8" opacity=".9"/><circle cx="74" cy="42" r="8" opacity=".7"/>
+      <circle cx="65" cy="71" r="8" opacity=".55"/><circle cx="35" cy="71" r="8" opacity=".7"/>
+      <circle cx="26" cy="42" r="8" opacity=".85"/><circle cx="50" cy="50" r="11"/></g>
+    </svg>
+    <span>MENOUA</span>
+  </div>
+  <h1>Delete your account</h1>
+  <p class="sub">This deletes your Menoua account and every row of data tied to it.</p>
+</div></header>
+
+<div class="wrap">
+
+<!-- ── Primary path: in-app ─────────────────────────────────────────── -->
+<div class="card">
+  <h2>The fastest way is in the app</h2>
+  <div class="step"><div class="num">1</div><p style="margin:0">Open <strong>Menoua</strong></p></div>
+  <div class="step"><div class="num">2</div><p style="margin:0">Go to <strong>You</strong> → <strong>Delete my account</strong></p></div>
+  <div class="step"><div class="num">3</div><p style="margin:0">Confirm. Your account and data are removed immediately.</p></div>
+</div>
+
+<div class="divider">Or, without the app</div>
+
+<!-- ── Path A: has an email on the account ─────────────────────────── -->
+<div class="card">
+  <h2>If you added an email to your account</h2>
+  <p style="margin-top:4px">You can delete it right here, verified by a one-time code.</p>
+
+  <div id="emailStep">
+    <label for="email">Your Menoua email</label>
+    <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+    <button id="sendCodeBtn">Send me a code</button>
+    <div class="msg" id="emailMsg"></div>
+  </div>
+
+  <div id="codeStep" class="hidden">
+    <label for="code">6-digit code</label>
+    <input type="text" id="code" inputmode="numeric" placeholder="123456" maxlength="6">
+    <button class="danger" id="deleteBtn">Verify and delete permanently</button>
+    <button class="ghost" id="backBtn" type="button">Use a different email</button>
+    <div class="msg" id="codeMsg"></div>
+  </div>
+
+  <div id="doneStep" class="hidden">
+    <div class="msg ok show">Your account and all associated data have been deleted.</div>
+  </div>
+</div>
+
+<!-- ── Path B: never added an email (anonymous account) ────────────── -->
+<div class="card">
+  <h2>If you never added an email</h2>
+  <p style="margin-top:4px">Most Menoua accounts start this way, so there is nothing on our
+  side yet to send a code to. Tell us where to confirm once it is done, and anything that
+  helps us find the right account. We remove it by hand.</p>
+
+  <label for="reqEmail">An email we can confirm to</label>
+  <input type="email" id="reqEmail" placeholder="you@example.com" autocomplete="email">
+  <label for="reqNote">Anything that helps us find your account (optional)</label>
+  <input type="text" id="reqNote" placeholder="e.g. sign-up date, referral code, language track">
+  <button id="requestBtn">Request deletion</button>
+  <div class="msg" id="requestMsg"></div>
+</div>
+
+<!-- ── What gets deleted ────────────────────────────────────────────── -->
+<div class="card">
+  <h2>What is deleted, and what we keep</h2>
+  <table>
+    <tr><th>Profile, progress, session history, listening test results</th>
+        <td>Deleted immediately (in-app or verified web) or within 30 days (unverified web request).</td></tr>
+    <tr><th>Voice recordings</th>
+        <td>Never stored on our servers to begin with — they live in the app's private storage on
+        your device and are removed the moment your device deletes them.</td></tr>
+    <tr><th>Crash and diagnostic logs</th>
+        <td>Kept up to 90 days for debugging, then deleted automatically. Not linked to your name.</td></tr>
+    <tr><th>Purchase records</th>
+        <td>Retained by Apple, Google or Stripe as required by tax law, independent of your Menoua
+        account. We do not control this retention.</td></tr>
+  </table>
+  <p style="margin-top:14px">Full detail in the <a href="./privacy.html">Privacy Policy</a>.</p>
+</div>
+
+<footer>
+  Menoua · <a href="mailto:privacy@menoua.app">privacy@menoua.app</a> ·
+  <a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a>
+</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+  // Same public values already shipped inside the Menoua app bundle
+  // (EXPO_PUBLIC_SUPABASE_URL / EXPO_PUBLIC_SUPABASE_ANON_KEY). The anon key is
+  // designed to be public: every table it can touch is behind row-level
+  // security, and this page never uses anything but the caller's own session.
+  const SUPABASE_URL = "__SUPABASE_URL__";
+  const SUPABASE_ANON_KEY = "__SUPABASE_ANON_KEY__";
+
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const $ = (id) => document.getElementById(id);
+  function show(el, cls, text) { el.textContent = text; el.className = 'msg show ' + cls; }
+
+  let pendingEmail = '';
+
+  $('sendCodeBtn').addEventListener('click', async () => {
+    const email = $('email').value.trim().toLowerCase();
+    if (!email || !email.includes('@')) {
+      return show($('emailMsg'), 'err', 'Enter a valid email address.');
+    }
+    $('sendCodeBtn').disabled = true;
+    // shouldCreateUser: false is doing real work here: it means an email with
+    // no matching account errors out instead of silently creating one, so a
+    // stranger cannot use this box to conjure an account and then "delete" it.
+    const { error } = await sb.auth.signInWithOtp({
+      email,
+      options: { shouldCreateUser: false },
+    });
+    $('sendCodeBtn').disabled = false;
+    if (error) {
+      return show($('emailMsg'), 'err',
+        "We couldn't find a Menoua account with that email. Check it, or use the request form below.");
+    }
+    pendingEmail = email;
+    $('emailStep').classList.add('hidden');
+    $('codeStep').classList.remove('hidden');
+    show($('codeMsg'), 'ok', 'Code sent. It lands within a minute.');
+  });
+
+  $('backBtn').addEventListener('click', () => {
+    $('codeStep').classList.add('hidden');
+    $('emailStep').classList.remove('hidden');
+    $('emailMsg').className = 'msg';
+  });
+
+  $('deleteBtn').addEventListener('click', async () => {
+    const token = $('code').value.trim();
+    if (!/^\d{6}$/.test(token)) {
+      return show($('codeMsg'), 'err', 'Enter the 6-digit code from your email.');
+    }
+    $('deleteBtn').disabled = true;
+
+    const { data, error } = await sb.auth.verifyOtp({
+      email: pendingEmail, token, type: 'email',
+    });
+    if (error || !data.session) {
+      $('deleteBtn').disabled = false;
+      return show($('codeMsg'), 'err', 'That code did not match. Check it and try again.');
+    }
+
+    // A verified session for this account now exists in the browser. The
+    // Edge Function reads that session's own token — this page never sends a
+    // user id anywhere, so there is nothing here for a browser to fake.
+    const { error: fnError } = await sb.functions.invoke('delete-account');
+    $('deleteBtn').disabled = false;
+    if (fnError) {
+      return show($('codeMsg'), 'err', 'Deletion failed. Nothing was removed. Try again shortly.');
+    }
+
+    $('codeStep').classList.add('hidden');
+    $('doneStep').classList.remove('hidden');
+  });
+
+  $('requestBtn').addEventListener('click', async () => {
+    const email = $('reqEmail').value.trim().toLowerCase();
+    if (!email || !email.includes('@')) {
+      return show($('requestMsg'), 'err', 'Enter an email so we can confirm once it is done.');
+    }
+    $('requestBtn').disabled = true;
+    const { error } = await sb.from('deletion_requests').insert({
+      email, note: $('reqNote').value.trim() || null,
+    });
+    $('requestBtn').disabled = false;
+    if (error) {
+      return show($('requestMsg'), 'err', 'That did not go through. Try again in a moment.');
+    }
+    $('reqEmail').value = ''; $('reqNote').value = '';
+    show($('requestMsg'), 'ok', "Received. We'll delete the account and confirm by email within 30 days.");
+  });
+</script>
+</body>
+</html>
